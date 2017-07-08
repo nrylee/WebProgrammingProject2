@@ -16,19 +16,7 @@
     background-color: olivedrab;
     /* background-image: url('greenfelt.jpg'); */   
 }
-.poker-face {
-    display: none;
-}
-.avatar:hover + .poker-face, .poker-face:hover {
-    display: block;
-    position: fixed;
-    left:50%;
-    margin-left: -50%;
-    top:50%;
-    margin-top: -50%;
-    border: 1px solid #2b2b2b;
-    box-shadow: 2px 2px 2px 2px #2b2b2b;
-}
+
 body {
     font-size: 1em;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -42,7 +30,12 @@ body {
     border-top: 1px solid lightgrey;    
     
 }
-
+#messages {
+    position: absolute;
+    top:0px;
+    right: 0px;
+    text-align: right;
+}
 .card {
     z-index: 25;
 }
@@ -75,7 +68,7 @@ body {
 }
 .purse-value {
     background-color: rgba(255,255,255,0.45);
-
+    display: inline-block;
 }
 .purse-value:before {
     content: '$';
@@ -86,10 +79,10 @@ body {
     border:1px solid #2b2b2b;
     background-color: darkslategray;
 }
-#playerTwo, #playerThree {
+#player2, #player3 {
     border-right: 1px solid lightgrey;        
 }
-#playerTwo, #playerThree, #playerFour {
+#player2, #player3, #player4 {
     display: block;
     position: absolute;
     top:0px;
@@ -98,13 +91,13 @@ body {
     border-bottom: 1px solid lightgrey;    
     font-size: 0.75em;
 }
-#playerTwo {
+#player2 {
     left:0%;
 }
-#playerThree {
+#player3 {
     left:33.3%;
 }
-#playerFour {
+#player4 {
     left:66.6%;
 }
 #cardPool {

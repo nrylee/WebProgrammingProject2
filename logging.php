@@ -6,7 +6,6 @@
         fwrite($log, '[' . date('Y.m.d H:i:s') . "]   $message\n");
         fclose($log);
     }
-    
     function writeToLogWhenDebug($message) {
         global $debug;        
         if($debug) {
