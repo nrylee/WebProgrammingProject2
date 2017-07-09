@@ -27,50 +27,85 @@
                     'avatar' =>'avatar', 
                     'pokerface' => 'pokerface'
                 ),
-                array('player2id', 'player2name', 'avatar', 'pokerface'),
-                array('player3id', 'player3name', 'avatar', 'pokerface'),
-                array('player4id', 'player4name', 'avatar', 'pokerface')
+                array(
+                    'id' => 'player2id', 
+                    'username' => 'player2name', 
+                    'avatar' =>'avatar', 
+                    'pokerface' => 'pokerface'
+                ),
+                array(
+                    'id' => 'player3id', 
+                    'username' => 'player3name', 
+                    'avatar' =>'avatar', 
+                    'pokerface' => 'pokerface'
+                ),
+                array(
+                    'id' => 'player4id', 
+                    'username' => 'player4name', 
+                    'avatar' =>'avatar', 
+                    'pokerface' => 'pokerface'
+                )
             ),
             'game2id' => array(
-                array('player1id', 'player1name', 'avatar', 'pokerface'),
-                array('player2id', 'player2name', 'avatar', 'pokerface'),
-                array(-1, '', '', '' /* Will return -1 as playerid if empty seat  */),
-                array(-1, '', '', '')
+                array(
+                    'id' => 'player1id', 
+                    'username' => 'player1name', 
+                    'avatar' =>'avatar', 
+                    'pokerface' => 'pokerface'
+                ),
+                array(
+                    'id' => 'player2id', 
+                    'username' => 'player2name', 
+                    'avatar' =>'avatar', 
+                    'pokerface' => 'pokerface'
+                ),
+                array(
+                    'id' => -1, 
+                    'username' => '', 
+                    'avatar' =>'', 
+                    'pokerface' => ''
+                ),
+                array(
+                    'id' => -1, 
+                    'username' => '', 
+                    'avatar' =>'', 
+                    'pokerface' => ''
+                )
             )
         );
         return $gameList;
     }
-    foreach ($getGameLobby as $gameid => $playerInfoList) {
+    // foreach ($getGameLobby as $gameid => $playerInfoList) {
         
-        foreach($lobby as $value){
-           $i = 0;
-            $value=lobby[i];
-            foreach($array as $value){
-                if($value[0]==-1){
-                    $displayOpenLobby;//a lobby is open, display open game
-                }
-            }
-        }
+    //     foreach($lobby as $value){
+    //        $i = 0;
+    //         $value=lobby[i];
+    //         foreach($array as $value){
+    //             if($value[0]==-1){
+    //                 $displayOpenLobby;//a lobby is open, display open game
+    //             }
+    //         }
+    //     }
         
-        for($row=0; $row < 4; $row++){
-           if($lobby[$row][0] == -1){
-            echo "<p><div class=\"openGame\"></div></p>";
-            echo "<ul>";
+    //     for($row=0; $row < 4; $row++){
+    //        if($lobby[$row][0] == -1){
+    //         echo "<p><div class=\"openGame\"></div></p>";
+    //         echo "<ul>";
             
                
-           }
-        }
+    //        }
+    //     }
         
         
-        //list of lobbies
-        //game id arrays
-        //write visibilty part of the page
-        //link to join games
-        //display lobbies
-        //show open games
+    //     //list of lobbies
+    //     //game id arrays
+    //     //write visibilty part of the page
+    //     //link to join games
+    //     //display lobbies
+    //     //show open games
 
-        # code...
-    }
+    //     # code...
+    // }
     function getGameLobby($gameid) 
     /* Use this to build Lobby Page (lobby.php) once player joins game, but is waiting for full set of players.
      * Copy and paste to that page if you need to. 
@@ -101,6 +136,22 @@
                 <a href="GameResources/play.php?gid=aAyugaL" target="_blank">Play!</a>
                 <footer>Currently 0 Players</footer>
             </section>
+
+            <?php
+                foreach (getGameLobbies() as $gameid => $playerList) {
+                    echo "<h1>Game $gameid</h1>";
+                    foreach ($playerList as $player) {
+                        echo '<div>';
+                        if ($player['id']==-1) {
+                            echo 'Open Seat';
+                        }
+                        else {
+                            echo $player['username'];
+                        }
+                        echo '</div>';
+                    }
+                }
+            ?>
         </div>
     </body>
 </html>
