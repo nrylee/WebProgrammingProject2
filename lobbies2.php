@@ -19,14 +19,6 @@
      * properly when I replace the placeholder.
      */
     {
-        $dir_f = "/home/nrylee1/public_html/Project2/games/";
-        $files = scandir($dir_f);
-        foreach ($files as $filename) {
-            if($filename!='.' && $filename!='..' && $filename!='basegame.game') {
-                $gameid = str_replace('.game', '', $filename);
-            }
-        }
-
         $gameList = array(
             'game1id' => array(
                 array(
@@ -104,14 +96,18 @@
     //        }
     //     }
         
-        
+  function UniqueRandomNumbersWithinRange($min, $max, $quantity) {
+    $numbers = range($min, $max);
+    shuffle($numbers);
+    return array_slice($numbers, 0, $quantity);
+}
+
     //     //list of lobbies
     //     //game id arrays
     //     //write visibilty part of the page
     //     //link to join games
     //     //display lobbies
     //     //show open games
-
     //     # code...
     // }
     function getGameLobby($gameid) 
@@ -132,33 +128,37 @@
 <html>
     <head>
         <title></title>
+            <link rel="stylesheet" media="all" type="text/css" href="lobbies2.css" />
     </head>
     <body>
         <h4>Hello <?php $pid ?>, find a lobby and hit join!</h4>
         <div>
-            <section>
-                <header>Lobby 1</header>
-                <div class="openGame">
-                 <a href="GameResources/play.php?gid=aAyugaL" target="_blank">Join Game!</a>
-                 </div>
-                <a href="GameResources/play.php?gid=aAyugaL" target="_blank">Play!</a>
-                <footer>Currently 0 Players</footer>
-            </section>
-
+            <div><a href="createGame.php">Create New Game</a></div>
+            <div class = "open">
+            <form method ="post" action ="lobbies2.php">
+               <input type="submit" name="submit" value="Open Seat">
+                </form>
+                </div>
             <?php
                 foreach (getGameLobbies() as $gameid => $playerList) {
                     echo "<h1>Game $gameid</h1>";
+                    $count = 0;
                     foreach ($playerList as $player) {
                         echo '<div>';
                         if ($player['id']==-1) {
-                            echo 'Open Seat';
+                            echo "<a href=\"joinGame.php?gid=$gameid&seat=$count\">Open Seat</a>";
                         }
                         else {
                             echo $player['username'];
                         }
                         echo '</div>';
+                        $count++;
                     }
                 }
+                //$numbers = range(1, 52);
+                //shuffle($numbers);
+
+               // print_r( UniqueRandomNumbersWithinRange(1,52,13));
             ?>
         </div>
     </body>

@@ -1,0 +1,9 @@
+body {
+    font-size: 1em;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: olivedrab;
+    background-image: url('http://codd.cs.gsu.edu/~jkaufman7/TexasLogo.png');
+    background-size: 240px 180px;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
