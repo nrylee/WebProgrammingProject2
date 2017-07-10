@@ -1,16 +1,6 @@
 <?php 
     require_once '/home/nrylee1/public_html/Project2/logging.php';
-    function getUserList() {
-        $userFile = fopen('/home/nrylee1/public_html/Project2/players/players.login', 'r');
-        $list = array();
-        $count = 0;
-        while(!feof($userFile)) {
-            $list[$count++] = explode(' ', fgets($userFile));
-        }
-        fclose($myfile);
-        return $list;
-    }
-    writeToLogWhenDebug('Session root folder (' . $_SERVER['DOCUMENT_ROOT'] . ')');
+    require_once '/home/nrylee1/public_html/Project2/players/playerfunctions.php';
     writeToLogWhenDebug('Loading login page');
     if(session_start()) {
         writeToLogWhenDebug('Session started successfully.');
@@ -33,20 +23,21 @@
             $users = getUserList();
             writeToLogWhenDebug("Login: searching through player list");
             $userfound = false;
-            foreach ($users as $id => $info) {
-                writeToLogWhenDebug("Login: Checking line $id: " . $info[0] . ':' . $info[1]);
-                if (trim($info[0])==trim($un)) {
+            writeToLogWhenDebug('Login: Checking '.count($users).' Total Users');
+            foreach ($users as $user) {
+                writeToLogWhenDebug("Login: Checking user: " . $user['id'] . ' un:' . $user['un']);
+                if (trim($user['un'])==trim($un)) {
                     writeToLogWhenDebug("Login: matched username");
-                    if(trim($info[1])==trim($pw)) {
+                    if(trim($user['pw'])==trim($pw)) {
                         writeToLogWhenDebug("Login: matched password");
-                        $_SESSION['pid'] = (int)$id;
+                        $_SESSION['pid'] = $user['id'];
                         writeToLogWhenDebug("Login session assigned pid=$id, redirecting to lobbies.php");
                         $userfound = true;
-                        $_SESSION['playerName'] = $info[0];
+                        $_SESSION['playerName'] = $user['un'];
                         header('Location: lobbies.php');
                     }
                     else {
-                        writeToLogWhenDebug("Login: password does not match " . $info[1]);
+                        writeToLogWhenDebug("Login: password does not match " . $user['pw']);
                         //Handle bad password
                     }
                     break;

@@ -19,6 +19,14 @@
      * properly when I replace the placeholder.
      */
     {
+        $dir_f = "/home/nrylee1/public_html/Project2/games/";
+        $files = scandir($dir_f);
+        foreach ($files as $filename) {
+            if($filename!='.' && $filename!='..' && $filename!='basegame.game') {
+                $gameid = str_replace('.game', '', $filename);
+            }
+        }
+
         $gameList = array(
             'game1id' => array(
                 array(

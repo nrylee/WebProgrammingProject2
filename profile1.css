@@ -4,3 +4,6 @@ body{
 	border: 5px inset #194D1E;
 	padding: 10px;
 }
+img {
+    max-width: 150px;
+}

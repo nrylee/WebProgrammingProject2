@@ -1,4 +1,6 @@
 <?php
+    require_once '/home/nrylee1/public_html/Project2/players/playerfunctions.php';
+    require_once '/home/nrylee1/public_html/Project2/logging.php';
 if (isset($_POST['submit'])) {
 	$file = $_FILES['file'];
 
@@ -18,6 +20,10 @@ if (isset($_POST['submit'])) {
 			if ($fileSize < 1000000) {
 				$fileNameNew = uniqid('', true).".".$fileActualExt;
 				$fileDestination = 'avatar/'.$fileNameNew;
+                session_start();
+                $player = $_SESSION['player'];
+                $player['avatar'] = $fileNameNew;
+                $_SESSION['player'] = updatePlayerInfo($player);
 				move_uploaded_file($fileTmpName, $fileDestination);
 				header("Location: profile.php?uploadsuccess");
 			} else {
@@ -50,6 +56,10 @@ if (isset($_POST['pokerface'])) {
 			if ($fileSize < 1000000) {
 				$fileNameNew = uniqid('', true).".".$fileActualExt;
 				$fileDestination = 'pokerface/'.$fileNameNew;
+                session_start();
+                $player = $_SESSION['player'];
+                $player['pface'] = $fileNameNew;
+                $_SESSION['player'] = updatePlayerInfo($player);
 				move_uploaded_file($fileTmpName, $fileDestination);
 				header("Location: profile.php?uploadsuccess");
 			} else {

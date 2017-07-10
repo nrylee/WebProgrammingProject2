@@ -1,45 +1,19 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-	<title>Profile Photo Upload</title>
-	<link rel="Stylesheet" type="text/css" href="profile1.css"/>
-</head>
-
-<body>
-		<header>
-		<img src="TexasLogo.png" alt="Texas Hold'em"/>
-		</header>
-
 <?php
-    $_SESSION['pid'] = 26;
-    $_SESSION['pusername'] = 'ding1temp';
-    $_SESSION['pavatar'] = '596186cf5f45a1.78059262.png';
-    $_SESSION['ppokerface'] = '5961871d0ef943.84990936.png';
-?>
-    <p>Username: <?php echo $_SESSION['pusername']; ?></p>
-    <p>ID: <?php echo $_SESSION['pid']; ?></p>
-   
-    <p>Avatar: <img src=<?php echo $_SESSION['pavatar']; ?>></p>
-    <p>Poker-Face: <img src=<?php echo $_SESSION['ppokerface']; ?>></p>
-
- <h2>Update Image</h2> 
-
-<form action="upload.php" method="POST" enctype="multipart/form-data">
-	<label>Upload a Selfie :</label>
-	<br>
-	<input type="file" name="file">
-	<button type="submit" name="submit">UPLOAD</button>
-</form>
-
-<br>
-
-<form action="upload.php" method="POST" enctype="multipart/form-data">
-	<label>Upload Your Poker Face :</label>
-	<br>
-	<input type="file" name="file">
-	<button type="submit" name="pokerface">UPLOAD</button>
-</form>
-
-</body>
+    require_once '/home/nrylee1/public_html/Project2/logging.php';
+    writeToLogWhenDebug('Accessed Index in Debug Mode');
+?><!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <h6><?php echo $_SERVER['DOCUMENT_ROOT']; ?>
+        <h5>Please login:</h5>
+        <h6>Username is your panther id (all lowercase), and your password is "password".</h6>
+        <form action="http://codd.cs.gsu.edu/~nrylee1/Project2/login.php" method="POST">
+            <div><input type="text" name="un" /></div>
+            <div><input type="password" name="pw" /></div>
+            <div><input type="submit" /></div>
+        </form>
+    </body>
 </html>
