@@ -7,3 +7,13 @@ body {
     background-repeat: no-repeat;
     background-position: center center;
 }
+a {
+    font-size: 1em;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #AB201f;
+    text-decoration: none;
+
+}
+a:hover{
+    color:whitesmoke;
+}
