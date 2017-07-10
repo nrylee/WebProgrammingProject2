@@ -25,8 +25,8 @@
 ?>
     <p>Username: <?php echo $_SESSION['pusername']; ?></p>
     <p>ID: <?php echo $_SESSION['pid']; ?></p>
-    <p>Avatar: <img src="/avatar/<?php echo $_SESSION['pavatar']; ?>"></p>
-    <p>Poker-Face: <img src="/pokerface/<?php echo $_SESSION['ppokerface']; ?>"></p>
+    <p>Avatar: <img src=<?php echo '"avatar/'.$_SESSION['pavatar'].'"'; ?>></p>
+    <p>Poker-Face: <img src=<?php echo '"pokerface/'.$_SESSION['ppokerface'].'"'; ?>></p>
 
  <h2>Update Image</h2> 
 <form action="upload.php" method="POST" enctype="multipart/form-data">
